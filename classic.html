@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yuvaraj M — Java Full Stack Developer</title>
+<meta name="description" content="Portfolio of Yuvaraj M — Computer Science undergraduate, Java full stack developer and open-source contributor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d1a;
+    --bg-soft: #10132a;
+    --card: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --text: #e6e8f5;
+    --muted: #9aa0bd;
+    --violet: #a78bfa;
+    --blue: #60a5fa;
+    --grad: linear-gradient(90deg, #a78bfa, #60a5fa);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(11, 13, 26, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .brand { font-weight: 700; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; white-space: nowrap; }
+  .links { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+  .links::-webkit-scrollbar { display: none; }
+  .links a { color: var(--muted); font-size: 14px; font-weight: 500; white-space: nowrap; transition: color .2s; }
+  .links a:hover { color: var(--text); text-decoration: none; }
+
+  /* Hero */
+  header.hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(600px 300px at 15% 20%, rgba(124, 58, 237, 0.35), transparent 70%),
+      radial-gradient(600px 320px at 85% 60%, rgba(37, 99, 235, 0.28), transparent 70%),
+      var(--bg-soft);
+    border-bottom: 1px solid var(--card-border);
+  }
+  .hero .wrap { display: flex; align-items: center; gap: 40px; padding-top: 72px; padding-bottom: 72px; }
+  .avatar {
+    flex: none; width: 168px; height: 168px; border-radius: 50%;
+    padding: 5px; background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    box-shadow: 0 0 60px rgba(124, 58, 237, 0.45);
+  }
+  .avatar div {
+    width: 100%; height: 100%; border-radius: 50%;
+    background: linear-gradient(135deg, #1c1f45, #232a5c);
+    display: grid; place-items: center;
+    font-size: 56px; font-weight: 800; letter-spacing: 2px;
+    color: #dcd6ff;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 58px); font-weight: 800; line-height: 1.1;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .role { margin-top: 12px; font-size: 18px; font-weight: 500; }
+  .hero .role span { color: var(--blue); }
+  .hero .loc { margin-top: 6px; color: var(--muted); font-size: 15px; }
+  .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .social a {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--card-border); background: var(--card);
+    color: var(--text); font-size: 14px; font-weight: 500;
+    transition: border-color .2s, transform .2s;
+  }
+  .social a:hover { border-color: var(--violet); transform: translateY(-2px); text-decoration: none; }
+  .social svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* Sections */
+  section { padding: 64px 0 0; }
+  h2 {
+    font-size: 28px; font-weight: 700; margin-bottom: 24px;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+    display: inline-block;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 14px; padding: 26px 28px; margin-bottom: 18px;
+    transition: border-color .25s, transform .25s;
+  }
+  .card:hover { border-color: rgba(167, 139, 250, 0.45); transform: translateY(-2px); }
+  .card h3 { font-size: 19px; font-weight: 700; }
+  .card .org { color: var(--blue); font-weight: 500; margin-top: 2px; }
+  .card .meta { color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .card ul { margin: 14px 0 0 18px; }
+  .card li { margin-bottom: 6px; color: #cfd3ea; }
+  .card li::marker { color: var(--violet); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag {
+    font-size: 12.5px; font-weight: 500; padding: 4px 11px; border-radius: 999px;
+    background: rgba(167, 139, 250, 0.12); color: #cdbcff;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+  }
+  .about p { font-size: 16.5px; color: #cfd3ea; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
+  .stat { text-align: center; padding: 20px 10px; margin: 0; }
+  .stat b { display: block; font-size: 28px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat span { font-size: 13px; color: var(--muted); }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .grid2 .card { margin: 0; }
+  .skill-group h3 { font-size: 15px; color: var(--violet); text-transform: uppercase; letter-spacing: .06em; }
+  .skill-group .tags { margin-top: 12px; }
+
+  .cert { display: flex; align-items: center; gap: 16px; }
+  .cert .ico {
+    flex: none; width: 44px; height: 44px; border-radius: 10px;
+    background: linear-gradient(135deg, rgba(167,139,250,.25), rgba(96,165,250,.25));
+    display: grid; place-items: center; font-size: 20px;
+  }
+  .cert h3 { font-size: 16px; }
+
+  .contact { text-align: center; padding: 40px 28px; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 22px; }
+  .btn {
+    display: inline-block; padding: 12px 26px; border-radius: 999px;
+    background: linear-gradient(90deg, #7c3aed, #2563eb);
+    color: #fff; font-weight: 600;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124, 58, 237, .45); text-decoration: none; }
+
+  footer { margin-top: 72px; padding: 28px 0; border-top: 1px solid var(--card-border); text-align: center; color: var(--muted); font-size: 14px; }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 720px) {
+    .hero .wrap { flex-direction: column; text-align: center; padding-top: 48px; padding-bottom: 48px; gap: 26px; }
+    .avatar { width: 136px; height: 136px; }
+    .avatar div { font-size: 44px; }
+    .social { justify-content: center; }
+    .grid2 { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .card { padding: 22px 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Yuvaraj M</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#opensource">Open Source</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="avatar"><div>YM</div></div>
+    <div>
+      <h1>Yuvaraj M</h1>
+      <p class="role">Java Full Stack Developer · <span>Open-Source Contributor</span></p>
+      <p class="loc">📍 Pollachi, Coimbatore, Tamil Nadu, India</p>
+      <div class="social">
+        <a href="https://github.com/yuvaraj-2006" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.19-1.49 3.15-1.18 3.15-1.18.63 1.58.23 2.75.12 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/yuvaraj-m-65b91a328/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:yuvaraj789007@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="about" class="reveal">
+    <h2>About Me</h2>
+    <div class="card about">
+      <p>Computer Science and Engineering undergraduate with hands-on experience in Java, Spring Boot, REST API development, React.js, and MySQL. I completed the Infosys Springboard Java Full Stack virtual internship and contribute to software engineering task creation and review through the Shipd Olympus project. I'm an open-source contributor with a merged pull request in Appsmith, and I enjoy building full-stack applications, integrating APIs, and designing database-backed systems — on a strong foundation of data structures and algorithms, object-oriented programming, MVC, concurrency, debugging, testing, Git, and Docker.</p>
+    </div>
+    <div class="stats">
+      <div class="card stat"><b>8.62</b><span>CGPA / 10</span></div>
+      <div class="card stat"><b>1</b><span>Merged PR in Appsmith</span></div>
+      <div class="card stat"><b>2</b><span>Full-stack projects</span></div>
+      <div class="card stat"><b>4</b><span>Certifications</span></div>
+    </div>
+  </section>
+
+  <section id="experience" class="reveal">
+    <h2>Experience</h2>
+    <div class="card">
+      <h3>Freelance Software Engineering Contributor</h3>
+      <p class="org">Shipd · Olympus Project</p>
+      <p class="meta">2026 – Present</p>
+      <ul>
+        <li>Contribute to software engineering task and solution sets designed to evaluate and improve large language model coding capabilities.</li>
+        <li>Create and review realistic software engineering tasks, including problem statements, test patches, and solution patches, following project requirements.</li>
+        <li>Analyze repository context, reproduce issues, validate proposed fixes, and focus on correctness and test coverage when preparing coding tasks.</li>
+      </ul>
+      <div class="tags"><span class="tag">Task Design</span><span class="tag">Code Review</span><span class="tag">Testing</span><span class="tag">Debugging</span></div>
+    </div>
+    <div class="card">
+      <h3>Software Engineering Virtual Intern — Java Full Stack</h3>
+      <p class="org">Infosys Springboard</p>
+      <p class="meta">2026 · Completed</p>
+      <ul>
+        <li>Completed the Java Full Stack virtual internship, applying object-oriented programming, Java, Spring Boot, and software design principles to guided engineering work.</li>
+        <li>Developed practical understanding of backend application structure, REST API integration, debugging, and maintainable software development practices.</li>
+      </ul>
+      <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">OOP</span></div>
+    </div>
+  </section>
+
+  <section id="opensource" class="reveal">
+    <h2>Open Source</h2>
+    <div class="card">
+      <h3>Appsmith — Merged Pull Request <a href="https://github.com/appsmithorg/appsmith/pull/42514" target="_blank" rel="noopener">#42514</a></h3>
+      <p class="org">appsmithorg/appsmith</p>
+      <p class="meta">2026</p>
+      <ul>
+        <li>Fixed a JSON Form bug where a required date field showed a validation error as soon as the form loaded, before the user interacted with it.</li>
+        <li>Applied the required state only after the field is touched, using react-hook-form, to match the behavior of other form fields; added unit tests for the fix.</li>
+      </ul>
+      <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">react-hook-form</span><span class="tag">Unit Tests</span></div>
+    </div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <h2>Projects</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Banking Simulation Web Application</h3>
+        <ul>
+          <li>Designed and implemented a full-stack banking application across frontend, backend, and database layers using an MVC architecture.</li>
+          <li>Built 8 Spring Boot REST API endpoints for authentication, account management, balance inquiry, fund transfers, and transaction history.</li>
+          <li>Designed a MySQL schema for accounts and transactions and implemented transaction-handling logic to support data consistency.</li>
+        </ul>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React.js</span><span class="tag">MySQL</span><span class="tag">REST APIs</span></div>
+      </div>
+      <div class="card">
+        <h3>Expense Tracker Web Application</h3>
+        <ul>
+          <li>Built a full-stack expense tracking application with RESTful CRUD APIs and input validation for recording and categorizing expenses.</li>
+          <li>Developed a responsive user interface and integrated it with backend services for expense management.</li>
+        </ul>
+        <div class="tags"><span class="tag">Spring Boot</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <h2>Skills</h2>
+    <div class="grid2">
+      <div class="card skill-group">
+        <h3>Programming Languages</h3>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">C</span><span class="tag">SQL</span></div>
+      </div>
+      <div class="card skill-group">
+        <h3>Backend</h3>
+        <div class="tags"><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">Microservices fundamentals</span><span class="tag">WebSocket</span></div>
+      </div>
+      <div class="card skill-group">
+        <h3>Frontend</h3>
+        <div class="tags"><span class="tag">React.js</span><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Bootstrap</span><span class="tag">Vite</span></div>
+      </div>
+      <div class="card skill-group">
+        <h3>Databases</h3>
+        <div class="tags"><span class="tag">MySQL</span><span class="tag">Relational schema design</span><span class="tag">SQL queries</span><span class="tag">CRUD operations</span></div>
+      </div>
+      <div class="card skill-group">
+        <h3>CS Fundamentals</h3>
+        <div class="tags"><span class="tag">Data Structures &amp; Algorithms</span><span class="tag">OOP</span><span class="tag">MVC</span><span class="tag">Concurrency</span><span class="tag">Synchronization</span><span class="tag">Operating Systems</span><span class="tag">Computer Networking</span><span class="tag">Distributed Systems</span></div>
+      </div>
+      <div class="card skill-group">
+        <h3>Tools</h3>
+        <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Docker</span><span class="tag">Postman</span><span class="tag">VS Code</span><span class="tag">IntelliJ IDEA</span></div>
+      </div>
+      <div class="card skill-group" style="grid-column: 1 / -1;">
+        <h3>Data &amp; ML</h3>
+        <div class="tags"><span class="tag">Data preprocessing</span><span class="tag">Data analysis</span><span class="tag">Supervised machine learning</span><span class="tag">scikit-learn</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications" class="reveal">
+    <h2>Certifications</h2>
+    <div class="grid2">
+      <div class="card cert"><div class="ico">☕</div><div><h3>Programming in Java</h3><p class="meta">Infosys Springboard</p></div></div>
+      <div class="card cert"><div class="ico">🧩</div><div><h3>Data Structures and Algorithms using Java</h3><p class="meta">Infosys Springboard</p></div></div>
+      <div class="card cert"><div class="ico">🏅</div><div><h3>Java Certification</h3><p class="meta">HackerRank</p></div></div>
+      <div class="card cert"><div class="ico">🗄️</div><div><h3>SQL Certification</h3><p class="meta">HackerRank</p></div></div>
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <h2>Education</h2>
+    <div class="card">
+      <h3>Dr. Mahalingam College of Engineering and Technology, Pollachi</h3>
+      <p class="org">Bachelor of Engineering, Computer Science and Engineering</p>
+      <p class="meta">2024 – 2028 · Third Year · CGPA: 8.62 / 10</p>
+    </div>
+    <div class="card">
+      <h3>Palaniammal Higher Secondary School, Kaliyapuram</h3>
+      <p class="org">Higher Secondary Certificate (HSC)</p>
+      <p class="meta">2023 – 2024 · 93%</p>
+    </div>
+    <div class="card">
+      <h3>SSLC</h3>
+      <p class="meta">2021 – 2022 · 86%</p>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>Contact</h2>
+    <div class="card contact">
+      <p>I'm open to internships, open-source collaboration, and full-stack development opportunities. Feel free to reach out.</p>
+      <a class="btn" href="mailto:yuvaraj789007@gmail.com">yuvaraj789007@gmail.com</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Yuvaraj M</div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+</script>
+</body>
+</html>
