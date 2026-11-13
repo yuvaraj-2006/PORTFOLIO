@@ -62,12 +62,10 @@
     padding: 5px; background: linear-gradient(135deg, #a78bfa, #60a5fa);
     box-shadow: 0 0 60px rgba(124, 58, 237, 0.45);
   }
-  .avatar div {
-    width: 100%; height: 100%; border-radius: 50%;
-    background: linear-gradient(135deg, #1c1f45, #232a5c);
-    display: grid; place-items: center;
-    font-size: 56px; font-weight: 800; letter-spacing: 2px;
-    color: #dcd6ff;
+  .avatar img {
+    display: block; width: 100%; height: 100%; border-radius: 50%;
+    object-fit: cover; object-position: 50% 18%;
+    background: #1c1f45;
   }
   .hero h1 {
     font-size: clamp(38px, 6vw, 58px); font-weight: 800; line-height: 1.1;
@@ -150,7 +148,6 @@
   @media (max-width: 720px) {
     .hero .wrap { flex-direction: column; text-align: center; padding-top: 48px; padding-bottom: 48px; gap: 26px; }
     .avatar { width: 136px; height: 136px; }
-    .avatar div { font-size: 44px; }
     .social { justify-content: center; }
     .grid2 { grid-template-columns: 1fr; }
     .stats { grid-template-columns: repeat(2, 1fr); }
@@ -182,7 +179,7 @@
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="avatar"><div>YM</div></div>
+    <div class="avatar"><img src="images/profile.jpg" alt="Yuvaraj M"></div>
     <div>
       <h1>Yuvaraj M</h1>
       <p class="role">Java Full Stack Developer · <span>Open-Source Contributor</span></p>
